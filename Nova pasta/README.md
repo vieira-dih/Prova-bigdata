@@ -1,90 +1,129 @@
-README — Data Pipeline com MinIO, PostgreSQL e Metabase
-📖 Visão Geral
+# 📌 Data Pipeline — MinIO, PostgreSQL e Metabase
 
-Este projeto implementa uma pipeline de dados completa utilizando Docker.
+## 📖 Visão Geral
+
+Este projeto implementa uma pipeline de dados completa utilizando containers Docker.  
 O fluxo consiste em:
 
-1️⃣ Fetcher → Faz ingestão dos dados e os armazena no MinIO (S3)
-2️⃣ Processor → Processa os dados ingeridos e insere no PostgreSQL
-3️⃣ Metabase → Camada de visualização e BI
+1️⃣ **Fetcher** → Ingestão dos dados no MinIO (S3)  
+2️⃣ **Processor** → Processa e insere os dados no PostgreSQL  
+3️⃣ **Metabase** → Visualização dos dados para análise BI  
 
-Toda a infraestrutura é containerizada via Docker Compose, facilitando deploy e execução.
+Toda a infraestrutura é containerizada via **Docker Compose**.
 
-🛠️ Tecnologias Utilizadas
-Função	Tecnologia
-Armazenamento de dados brutos	MinIO (S3)
-Processamento de dados	Python
-Banco de Dados	PostgreSQL
-Visualização de dados	Metabase
-Orquestração	Docker Compose
-📂 Estrutura do Projeto
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+| Função | Tecnologia |
+|--------|------------|
+| Armazenamento de dados brutos | MinIO (S3) |
+| Processamento ETL | Python |
+| Banco de Dados | PostgreSQL |
+| Visualização | Metabase |
+| Orquestração | Docker Compose |
+
+---
+
+## 📂 Estrutura do Projeto
+
 📦 Prova-bigdata
- ┣ 📁 fetcher
- ┃ ┣ fetcher.py
- ┃ ┣ Dockerfile
- ┃ ┗ requirements.txt
- ┣ 📁 processor
- ┃ ┣ processor.py
- ┃ ┣ Dockerfile
- ┃ ┗ requirements.txt
- ┣ 📁 dashboard  <-- (não utilizado nesta versão)
- ┣ docker-compose.yml
- ┗ README.md
+┗ 📁 Nova pasta
+┣ 📁 fetcher
+┃ ┣ fetcher.py
+┃ ┣ Dockerfile
+┃ ┗ requirements.txt
+┣ 📁 processor
+┃ ┣ processor.py
+┃ ┣ Dockerfile
+┃ ┗ requirements.txt
+┣ 📁 dashboard <-- (não utilizado nesta entrega)
+┣ docker-compose.yml
+┗ README.md
 
-🚀 Execução do Projeto
-1️⃣ Clonar o repositório
+
+🚫 O dashboard Flask não está em uso nesta versão.
+
+---
+
+## 🚀 Execução do Projeto
+
+### 1️⃣ Clonar o repositório
+
+```bash
 git clone https://github.com/vieira-dih/Prova-bigdata.git
+
 cd Prova-bigdata
 
-2️⃣ Subir toda a infraestrutura
+Cd nova pasta
+
+``` 
+
+2️⃣ Subir os containers
+
+**C om o Docker aberto **
+```bash
+
 docker compose up -d --build
 
+```
 
-Verifique se tudo está rodando:
+Verifique se subiu corretamente:
+```bash
 
 docker ps
 
+```
 
-Você deve ver:
+Você deve ver os serviços:
 
 Serviço	Status
-postgres	UP
-minio	UP
-metabase	UP
-fetcher	UP
-processor	UP
 
-🔌 URLs e credenciais dos serviços
+postgres  UP
+minio	  UP
+metabase  UP
+fetcher	  UP
+processor UP
+
+🔌 Acesso aos Serviços
+
 Serviço	URL	Credenciais
 Metabase	http://localhost:3000
-	Criadas ao acessar a 1ª vez
+	Criar no 1º acesso
+
 MinIO Console	http://localhost:9003
 	minioadmin / minioadmin123
+
 PostgreSQL	localhost:5432	metabase / metabase123
+
 📍 Execução da Pipeline
-🟦 1️⃣ Ingestão — Fetcher
+
+ Ingestão — Fetcher
+ ```bash
 docker compose exec fetcher python fetcher.py
 
+```
+📌 Gera e envia arquivo CSV ao MinIO
 
-📌 Resultado: Arquivo CSV gerado e armazenado no MinIO
+🟩 Processamento — Processor
+```bash
 
-🟩 2️⃣ Processamento — Processor
 docker compose exec processor python processor.py
 
+```
 
-📌 Resultado: Dados transformados e inseridos no PostgreSQL
+📌 Insere dados processados no PostgreSQL
 
-📊 Visualização — Metabase
+📊 Configuração do Metabase
 
 Acesse:
+➡️ http://localhost:3000
 
-🔗 http://localhost:3000
+Crie o usuário Admin e configure o banco em:
 
-Realize a criação do usuário ADM. Depois:
+Settings → Databases → Add Database
 
-➡️ Settings → Databases → Add Database
-
-Preencha assim:
+Preencha:
 
 Campo	Valor
 Name	pipeline-db
@@ -95,19 +134,20 @@ Database Name	metabase_db
 Username	metabase
 Password	metabase123
 
-🟢 Após salvar:
-→ Vá em Browse data → Selecione a tabela → Crie gráficos e dashboards
+Após salvar:
 
-🧹 Encerrar serviços
+Browse data → Selecione a tabela → Monte dashboards
+
+🧹 Encerrar a infraestrutura
+```bash
 docker compose down
-
+```
 🔧 Possíveis Problemas e Soluções
-Problema	Solução
-Processo acusa arquivo ausente	Verifique se o fetcher foi executado antes
-Tabelas não aparecem no Metabase	Admin → Databases → Sync database schema
-Falha ao conectar no MinIO	Confirme porta 9003 e credenciais corretas
-Processor falha ao ler CSV	Verificar se o bucket/arquivo existe no MinIO
+Problema/Solução
+Processor não encontra arquivo	Execute o fetcher primeiro
+Metabase sem tabelas	Admin → Databases → Sync Schema
+MinIO não acessa	Verificar porta 9003 e credenciais
+Falha ao ler CSV	Verificar bucket/arquivo no MinIO
 📌 Repositório Oficial
 
-
-👉 https://github.com/vieira-dih/Prova-bigdata
+🔗 https://github.com/vieira-dih/Prova-bigdata
