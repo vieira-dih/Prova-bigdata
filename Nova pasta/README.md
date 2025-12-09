@@ -128,13 +128,13 @@ Preencha:
 
 |Campo|	Valor|
 |-----|------|
-|Name|	|pipeline-db|
-|Type|	|PostgreSQL|
-|Host|	|postgres|
-|Port|	|5432|
-|Database Name|	|metabase_db|
-|Username|	|metabase|
-|Password|	|metabase123|
+|Name	| pipeline-db|
+|Type	| PostgreSQL|
+|Host	| postgres|
+|Port	| 5432|
+|Database Name	| metabase_db|
+|Username	| metabase|
+|Password	| metabase123|
 
 Após salvar:
 
