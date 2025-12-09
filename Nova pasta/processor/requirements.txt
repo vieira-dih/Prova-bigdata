@@ -1,0 +1,8 @@
+# Pin numpy to 1.x to avoid ABI incompatibilities with binary extensions
+numpy==1.26.4
+pandas==2.2.2
+pyarrow==13.0.0
+boto3==1.28.0
+# Use a published s3fs version available on PyPI
+s3fs==2024.12.0
+psycopg2-binary==2.9.11
