@@ -146,12 +146,12 @@ docker compose down
 ```
 🔧 Possíveis Problemas e Soluções
 
-|Problema| |Solução|
-|--------| |-------|
-|Processor não encontra arquivo|	|Execute o fetcher primeiro|
-|Metabase sem tabelas|	|Admin → Databases → Sync Schema|
-|MinIO não acessa|	|Verificar porta 9003 e credenciais|
-|Falha ao ler CSV|	|Verificar bucket/arquivo no MinIO|
+|Problema| Solução|
+|--------| -------|
+|Processor não encontra arquivo | Execute o fetcher primeiro|
+|Metabase sem tabelas | Admin → Databases → Sync Schema|
+|MinIO não acessa | Verificar porta 9003 e credenciais|
+|Falha ao ler CSV | Verificar bucket/arquivo no MinIO|
 
 📌 Repositório Oficial
 
