@@ -53,6 +53,7 @@ minio	UP
 metabase	UP
 fetcher	UP
 processor	UP
+
 🔌 URLs e credenciais dos serviços
 Serviço	URL	Credenciais
 Metabase	http://localhost:3000
@@ -107,5 +108,6 @@ Tabelas não aparecem no Metabase	Admin → Databases → Sync database schema
 Falha ao conectar no MinIO	Confirme porta 9003 e credenciais corretas
 Processor falha ao ler CSV	Verificar se o bucket/arquivo existe no MinIO
 📌 Repositório Oficial
+
 
 👉 https://github.com/vieira-dih/Prova-bigdata
