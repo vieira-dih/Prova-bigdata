@@ -36,13 +36,14 @@ git clone https://github.com/vieira-dih/Prova-bigdata.git
 cd Prova-bigdata
 
 2️⃣ Subir toda a infraestrutura
+```bash
 docker compose up -d --build
-
+```
 
 Verifique se tudo está rodando:
-
+```bash
 docker ps
-
+```
 
 Você deve ver:
 
@@ -55,20 +56,25 @@ processor	UP
 🔌 URLs e credenciais dos serviços
 Serviço	URL	Credenciais
 Metabase	http://localhost:3000
-	Criadas ao acessar a 1ª vez
+	**Criadas ao acessar a 1ª vez**
+	
 MinIO Console	http://localhost:9003
 	minioadmin / minioadmin123
+	
 PostgreSQL	localhost:5432	metabase / metabase123
 📍 Execução da Pipeline
-🟦 1️⃣ Ingestão — Fetcher
-docker compose exec fetcher python fetcher.py
 
+🟦 1️⃣ Ingestão — Fetcher
+```bash
+docker compose exec fetcher python fetcher.py
+```
 
 📌 Resultado: Arquivo CSV gerado e armazenado no MinIO
 
 🟩 2️⃣ Processamento — Processor
+```bash
 docker compose exec processor python processor.py
-
+```
 
 📌 Resultado: Dados transformados e inseridos no PostgreSQL
 
@@ -97,10 +103,11 @@ Password	metabase123
 → Vá em Browse data → Selecione a tabela → Crie gráficos e dashboards
 
 🧹 Encerrar serviços
+```bash
 docker compose down
-
+```
 🔧 Possíveis Problemas e Soluções
-Problema	Solução
+Problema/Solução
 Processo acusa arquivo ausente	Verifique se o fetcher foi executado antes
 Tabelas não aparecem no Metabase	Admin → Databases → Sync database schema
 Falha ao conectar no MinIO	Confirme porta 9003 e credenciais corretas
