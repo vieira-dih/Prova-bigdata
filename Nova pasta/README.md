@@ -52,16 +52,18 @@ Toda a infraestrutura é containerizada via **Docker Compose**.
 
 ```bash
 git clone https://github.com/vieira-dih/Prova-bigdata.git
-
+```
+```bash
 cd Prova-bigdata
-
+```
+```bash
 Cd nova pasta
+```
 
-``` 
 
 2️⃣ Subir os containers
 
-**C om o Docker aberto **
+**Com o Docker aberto **
 ```bash
 
 docker compose up -d --build
@@ -94,7 +96,6 @@ Metabase	http://localhost:3000
 MinIO Console	http://localhost:9003
 	minioadmin / minioadmin123
 
-PostgreSQL	localhost:5432	metabase / metabase123
 
 📍 Execução da Pipeline
 
@@ -125,14 +126,15 @@ Settings → Databases → Add Database
 
 Preencha:
 
-Campo	Valor
-Name	pipeline-db
-Type	PostgreSQL
-Host	postgres
-Port	5432
-Database Name	metabase_db
-Username	metabase
-Password	metabase123
+|Campo|	Valor|
+|-----|------|
+|Name|	|pipeline-db|
+|Type|	|PostgreSQL|
+|Host|	|postgres|
+|Port|	|5432|
+|Database Name|	|metabase_db|
+|Username|	|metabase|
+|Password|	|metabase123|
 
 Após salvar:
 
@@ -143,11 +145,14 @@ Browse data → Selecione a tabela → Monte dashboards
 docker compose down
 ```
 🔧 Possíveis Problemas e Soluções
-Problema/Solução
-Processor não encontra arquivo	Execute o fetcher primeiro
-Metabase sem tabelas	Admin → Databases → Sync Schema
-MinIO não acessa	Verificar porta 9003 e credenciais
-Falha ao ler CSV	Verificar bucket/arquivo no MinIO
+
+|Problema| |Solução|
+|--------| |-------|
+|Processor não encontra arquivo|	|Execute o fetcher primeiro|
+|Metabase sem tabelas|	|Admin → Databases → Sync Schema|
+|MinIO não acessa|	|Verificar porta 9003 e credenciais|
+|Falha ao ler CSV|	|Verificar bucket/arquivo no MinIO|
+
 📌 Repositório Oficial
 
 🔗 https://github.com/vieira-dih/Prova-bigdata
