@@ -61,10 +61,10 @@ Cada página contém instruções detalhadas, código, diagramas e decisões té
 
 ## 👥 Participantes do Projeto
 
-- @Kaua Augusto  
-- @Ryan  
-- @Diogo Vieira Amorim  
-- @Luis Felipe de Almeida Ribeiro  
-- @Bruno Henrique Almeida  
+- Diogo Vieira Amorim 
+- Kauã augusto de Souza Barbosa 
+- Luis Felipe De Almeida Ribeiro 
+- Ryan Afonso Lopes de Oliveira 
+- Bruno Henrique Almeida Ferreira da Silva  
 
 ---
